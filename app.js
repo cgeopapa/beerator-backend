@@ -1,9 +1,21 @@
-const http = require('http');
+const express = require('express');
+const mongoose = require('mongoose');
 
-const requestListener = function (req, res) {
-  res.writeHead(200);
-  res.end('Hello, World!');
-}
+mongoose.connect('mongodb+srv://admin:admin@beerator-pfc6o.mongodb.net/beerator?retryWrites=true&w=majority')
+const db = mongoose.connection;
+db.once('open', function(){
+  console.log('We are connected!');
+});
 
-const server = http.createServer(requestListener);
-server.listen(8080);
+var app = express();
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res){
+  res.render('index');
+});
+
+app.post('/beer', function(req, res){
+  res.render('index');
+});
+
+app.listen(8080);
