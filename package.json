@@ -1,0 +1,27 @@
+{
+  "name": "beerator-backend",
+  "version": "0.0.1",
+  "description": "back-end server for the beer rating application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgeopapa/beerator-backend.git"
+  },
+  "keywords": [
+    "beer"
+  ],
+  "author": "cgeopapa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgeopapa/beerator-backend/issues"
+  },
+  "homepage": "https://github.com/cgeopapa/beerator-backend#readme",
+  "dependencies": {
+    "mongoose": "5.9.20",
+    "express": "4.17.1",
+    "ejs": "3.1.3"
+  }
+}
