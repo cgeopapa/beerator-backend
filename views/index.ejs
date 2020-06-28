@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>beeRator - Rate that beer</title>
+  <meta charset="UTF-8">
+  <title>CodePen - UI - Flip Card (using :focus-within for a11y)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
-    <h1>BeerRator birth!</h1>
+
+<div class="flip-card-container" style="--hue: 220">
+  <div class="flip-card">
+
+    <div class="card-front">
+      <figure>
+        <div class="img-bg"></div>
+        <img src="https://dj0m4io8o9yuz.cloudfront.net/storage/media/catalog/products/420/0/4200001800/az_2018_sku_alfabottle500_650x650.jpg?id=1561383954" alt="Brohm Lake">
+        <figcaption>Άλφα</figcaption>
+      </figure>
+
+      <ul>
+        <!-- 200 characters allowed -->
+        <li><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl augue, vulputate eu ipsum nec, vehicula mattis magna. Maecenas vitae mollis nisi, id viverra erat. Maecenas pretium mattis nisi non efficitur. Sed quis porta dolor. </p></li>
+        <li>B</li>
+        <li>T</li>
+        <li>F</li>
+        <li>C</li>
+      </ul>
+    </div>
+
+    <div class="card-back">
+        <figure>
+          <div class="img-bg"></div>
+          <img src="https://dj0m4io8o9yuz.cloudfront.net/storage/media/catalog/products/420/0/4200001800/az_2018_sku_alfabottle500_650x650.jpg?id=1561383954" alt="Brohm Lake">
+        </figure>
+        
+        <div class="card-back-button-container">
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </div>
+  </div>
+</div>
+
 </body>
 </html>
