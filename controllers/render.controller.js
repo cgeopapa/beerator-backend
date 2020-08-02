@@ -1,3 +1,5 @@
+const path = require('path');
+
 exports.renderIndex = function(req, res){
-    res.render('index');
+    res.sendfile(path.join(__dirname, '../front-end/public', 'index.html'));
 }
