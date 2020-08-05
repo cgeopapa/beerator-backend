@@ -1,30 +1,28 @@
-import React from "react"
-import Beer from './Beer'
-import "./App.css"
+import React, { Component } from "react";
+import APIController from './APIController';
+import Beer from './Beer';
+import "./App.css";
 
-const beers = [
-  {
-    name: 'test01',
-    description: 'desc01',
-    bitterness: '1',
-    taste_intensity: '2',
-    foam_intensity: '3',
-    co2_feel: '4'
-  },
-  {
-    name: 'test02',
-    description: 'desc02',
-    bitterness: '1',
-    taste_intensity: '2',
-    foam_intensity: '3',
-    co2_feel: '4'
+class App extends Component{
+  state = { beers: [] };
+
+  componentDidMount(){
+    APIController.getAllBeers().then(beers => this.setState({ beers }));
   }
-]
 
-export default function App() {
-  return (
-    <span className="App">
-      {beers.map(beer => <Beer beer={beer} />)}
-    </span>
-  )
+  test(){
+    console.log(APIController.getAllBeers());
+  }
+  
+  render(){
+    return (
+      <span className="App">
+        {this.state.beers.map(beer => <Beer beer={beer} />)}
+
+        <button onClick={this.test}>Add New Beer +</button>
+      </span>
+    )
+  }
 }
+
+export default App;
