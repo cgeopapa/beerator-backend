@@ -36,11 +36,11 @@ class Beer extends React.Component {
           <div id="content">
             {this.isEditing
               ? <input type="text" id="name" name="name" placeholder="Beer Name" value={this.beer.name}></input>
-              : <h1>{this.beer.name}</h1>
+              : <h1 id="name">{this.beer.name}</h1>
             }
             {this.isEditing
               ? <input type="text" id="desc" name="description" placeholder="Beer Desrciption" value={this.beer.description}></input>
-              : <p>{this.beer.description}</p>
+              : <p id="desc">{this.beer.description}</p>
             }
             <table>
               <tr>

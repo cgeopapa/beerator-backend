@@ -15,7 +15,7 @@
   border-radius: 20px;
 }
 
-#beer h1{
+#beer #name{
   font-size: 2rem;
   padding-left: 2rem;
 
@@ -23,13 +23,21 @@
   border-bottom: 2px solid #e5e5e5;
 }
 
-#beer p{
+#beer #desc{
   font-size: 1.3rem;
   border-bottom: 2px solid #e5e5e5;
   
   padding: 0;
   margin: 0;
   padding-left: 1rem;
+}
+
+#beer input{
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #e5e5e5;
+  border-radius: 6px;
+  box-shadow: none;
 }
 
 #beer #content{
@@ -46,6 +54,7 @@
 
 #beer th{
   text-align: right;
+  padding-bottom: 1rem;
 }
 
 #beer td{
