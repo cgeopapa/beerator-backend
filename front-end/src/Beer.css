@@ -62,23 +62,10 @@
 }
 
 #beer #buttons button{
+  text-align: center;
+
   padding: 0.3rem;
   margin: 0 0.8rem;
 
   width: 90px;
-
-  background-color: transparent;
-  color: #ffffff;
-  font-family: inherit;
-  border: 2px solid #ffffff;
-  border-radius: 3px;
-  background-position: center;
-  cursor: pointer;
-
-  transition-duration: 0.4s;
-}
-
-#beer #buttons button:active{
-  transition-duration: 0.1s;
-  background-color: #e5e5e5;
 }

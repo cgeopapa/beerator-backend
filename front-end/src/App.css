@@ -3,7 +3,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  
+  align-items: center;
 }
 
 .App-logo {
@@ -39,4 +39,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button{
+  padding: 0.3rem;
+  margin: 0 0.8rem;
+
+  background-color: transparent;
+  color: #ffffff;
+  font-family: inherit;
+  border: 2px solid #ffffff;
+  border-radius: 3px;
+  background-position: center;
+  cursor: pointer;
+
+  transition-duration: 0.4s;
+}
+
+button:active{
+  transition-duration: 0.1s;
+  background-color: #e5e5e5;
 }

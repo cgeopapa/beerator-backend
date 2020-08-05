@@ -7,7 +7,11 @@ class APIController {
   }
 
   static deleteBeer(id) {
-    fetch("beer/"+id, {method: "DELETE"})
+    fetch("beer/"+id, {method: "DELETE"});
+  }
+
+  static updateBeer(id){
+    fetch("beer/"+id, {method: "PUT"});
   }
 }
 

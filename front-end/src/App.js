@@ -14,13 +14,13 @@ class App extends Component{
     const beers = this.state.beers.filter(beer => beer._id !== id);
     this.setState({ beers: beers});
   }
- 
+
   render(){
     return (
       <span className="App">
         {this.state.beers.map(beer => <Beer beer={beer} onDelete={this.handleDelete} />)}
 
-        <button>Add New Beer +</button>
+        <button style={{width: "300px"}}>Add New Beer +</button>
       </span>
     )
   }
