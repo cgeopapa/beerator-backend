@@ -1,4 +1,5 @@
 import React from 'react'
+import APIController from './APIController'
 import './Beer.css'
 
 class Beer extends React.Component {
@@ -18,8 +19,8 @@ class Beer extends React.Component {
 
   delete(e){
     e.preventDefault();
-    fetch("beer/"+this.beer._id, {method: "DELETE"})
-      .then(super.getAllBeers());
+    APIController.deleteBeer(this.beer._id);
+    this.props.onDelete(this.beer._id);
   }
 
   render() {

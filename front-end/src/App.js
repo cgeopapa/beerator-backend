@@ -10,16 +10,17 @@ class App extends Component{
     APIController.getAllBeers().then(beers => this.setState({ beers }));
   }
 
-  test(){
-    console.log(APIController.getAllBeers());
+  handleDelete = (id) => {
+    const beers = this.state.beers.filter(beer => beer._id !== id);
+    this.setState({ beers: beers});
   }
-  
+ 
   render(){
     return (
       <span className="App">
-        {this.state.beers.map(beer => <Beer beer={beer} />)}
+        {this.state.beers.map(beer => <Beer beer={beer} onDelete={this.handleDelete} />)}
 
-        <button onClick={this.test}>Add New Beer +</button>
+        <button>Add New Beer +</button>
       </span>
     )
   }
