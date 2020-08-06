@@ -25,8 +25,12 @@ class Beer extends React.Component {
 
   update(e){
     e.preventDefault();
-    APIController.updateBeer(this.beer._id)
+    APIController.updateBeer(this.beer._id, this.beer);
     this.edit(e);
+  }
+
+  changeHandler = (event) =>{
+    this.beer[event.target.name] = event.target.value;
   }
 
   render() {
@@ -35,7 +39,7 @@ class Beer extends React.Component {
           <img src="https://illustoon.com/photo/3821.png" alt="Beer Img" width="300"></img>
           <div id="content">
             {this.isEditing
-              ? <input type="text" id="name" name="name" placeholder="Beer Name" value={this.beer.name}></input>
+              ? <input type="text" id="name" name="name" placeholder="Beer Name" onChange={this.changeHandler}></input>
               : <h1 id="name">{this.beer.name}</h1>
             }
             {this.isEditing

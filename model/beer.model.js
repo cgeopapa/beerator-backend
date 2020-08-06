@@ -4,6 +4,7 @@ const mongoose = require('mongoose'),
 mongoose.connect('mongodb+srv://admin:admin@beerator-pfc6o.mongodb.net/beerator?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 })
 const db = mongoose.connection;
 db.once('open', function(){

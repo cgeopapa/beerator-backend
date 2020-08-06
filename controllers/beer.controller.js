@@ -23,8 +23,8 @@ exports.removeBeer = function(req, res){
 }
 
 exports.updateBeer = function(req, res){
-    Beer.findByIdAndUpdate(req.params["beerId"], function(err){
+    Beer.findByIdAndUpdate(req.params["beerId"], req.body, function(err){
         if(err) return console.error(err);
-        res.json(Beer.findById(req.params["beerId"]));
+        return res.sendStatus(200);
     })
 }
