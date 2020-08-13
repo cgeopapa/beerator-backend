@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import APIController from './APIController';
 import Beer from './Beer';
+import CreateBeer from './CreateBeer';
 import "./App.css";
 
-class App extends Component{
-  state = { beers: [] };
+export default class App extends Component{
+  state = { beers: [], isAdding: false };
+  newBeer;
 
   componentDidMount(){
     APIController.getAllBeers().then(beers => this.setState({ beers }));
@@ -15,15 +17,31 @@ class App extends Component{
     this.setState({ beers: beers});
   }
 
+  addBeer(){
+    this.newBeer={
+      name: "",
+      description: "",
+      bitterness: 0,
+      taste_intensity: 0,
+      foam_intensity: 0,
+      co2_feel: 0
+    };
+    APIController.addBeer(this.newBeer)
+    .then(beer => this.addBeerAfterFetch(beer));
+  }
+
+  addBeerAfterFetch(beer){
+    this.newBeer = beer; 
+    this.setState({isAdding: true});
+  }
+
   render(){
     return (
       <span className="App">
-        {this.state.beers.map(beer => <Beer beer={beer} onDelete={this.handleDelete} />)}
+        {this.state.beers.map(beer => <Beer beer={beer} isEditing={false} onDelete={this.handleDelete} />)}
 
-        <button style={{width: "300px"}}>Add New Beer +</button>
+        <CreateBeer beer={this.newBeer} />
       </span>
     )
   }
 }
-
-export default App;

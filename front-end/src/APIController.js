@@ -13,4 +13,8 @@ export default class APIController {
   static updateBeer(id, beer){
     fetch("beer/"+id, {method: "PUT", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(beer)});
   }
+
+  static addBeer(beer){
+    fetch("beer", {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(beer)})
+  }
 }
