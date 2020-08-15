@@ -17,17 +17,10 @@ export default class App extends Component{
     this.setState({ beers: beers});
   }
 
-  addBeer(){
-    this.newBeer={
-      name: "",
-      description: "",
-      bitterness: 0,
-      taste_intensity: 0,
-      foam_intensity: 0,
-      co2_feel: 0
-    };
-    APIController.addBeer(this.newBeer)
-    .then(beer => this.addBeerAfterFetch(beer));
+  addBeer = (beer) => {
+    const beers = this.state.beers;
+    beers.push(beer);
+    this.setState({beers: beers});
   }
 
   addBeerAfterFetch(beer){
@@ -40,7 +33,7 @@ export default class App extends Component{
       <span className="App">
         {this.state.beers.map(beer => <Beer beer={beer} isEditing={false} onDelete={this.handleDelete} />)}
 
-        <CreateBeer beer={this.newBeer} />
+        <CreateBeer beer={this.newBeer} onAdd={this.addBeer} />
       </span>
     )
   }

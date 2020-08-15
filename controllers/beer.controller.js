@@ -8,7 +8,7 @@ exports.getBeers = function(req, res){
 }
 
 exports.addBeer = function(req, res){
-    const beer = new Beer(req.body.beer);
+    const beer = new Beer(req.body);
     beer.save(function (err, beer){
       if(err) return console.error(err);
       res.json(beer)
