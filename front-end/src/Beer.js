@@ -51,36 +51,6 @@ class Beer extends React.Component {
               ? <input type="text" id="desc" name="description" placeholder="Beer Desrciption" defaultValue={this.state.beer.description} onChange={this.changeHandler}></input>
               : <p id="desc">{this.state.beer.description}</p>
             }
-            <table>
-              <tr>
-                <th>Bitterness</th>
-                  {this.state.isEditing
-                    ? <td><input type="number" id="bitterness" name="bitterness" placeholder="Beer Bitterness" min="1" max="5" defaultValue={this.state.beer.bitterness} onChange={this.changeHandler}></input></td>
-                    : <td>{this.state.beer.bitterness}</td>
-                  }
-              </tr>
-              <tr>
-                <th>Taste</th>
-                  {this.state.isEditing
-                    ? <td><input type="number" id="taste" name="taste_intensity" placeholder="Beer Taste Intesity" min="1" max="5" defaultValue={this.state.beer.taste_intensity} onChange={this.changeHandler}></input></td>
-                    : <td>{this.state.beer.taste_intensity}</td>
-                  }
-              </tr>
-              <tr>
-                <th>Foam</th>
-                  {this.state.isEditing
-                    ? <td><input type="number" id="foam" name="foam_intensity" placeholder="Beer Foam Intesity" min="1" max="5" defaultValue={this.state.beer.foam_intensity} onChange={this.changeHandler}></input></td>
-                    : <td>{this.state.beer.foam_intensity}</td>
-                  }
-              </tr>
-              <tr>
-                <th>CO2</th>
-                 {this.state.isEditing
-                    ? <td><input type="number" id="co2" name="co2_feel" placeholder="Beer CO2 Feel" min="1" max="5" defaultValue={this.state.beer.co2_feel} onChange={this.changeHandler}></input></td>
-                    : <td>{this.state.beer.co2_feel}</td>
-                  }
-              </tr>
-            </table>
           </div>
           <div id="buttons">
             {this.state.isEditing
