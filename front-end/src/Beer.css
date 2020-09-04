@@ -42,7 +42,15 @@
 #beer input{
   background-color: transparent;
   color: #ffffff;
-  border: 2px solid #e5e5e5;
+  border: 2px solid #843b62;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+#beer textarea{
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #843b62;
   border-radius: 6px;
   box-shadow: none;
 }
@@ -82,6 +90,30 @@
 
   padding: 0.3rem;
   margin: 0 0.8rem;
+  border-radius: 5px;
 
   width: 90px;
+}
+
+#photo{
+  display:"flex";
+  align-items:"center"; 
+  flex-direction:"column";
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#beer #photo_button{
+  color: white;
+  border: white solid 2px;
+  border-radius: 5px;
+  display: block;
+  cursor: pointer;
+  font-size: 13px;
+  width: 90%;
+  text-align: center;
+  padding: 0.3rem;
+  margin: 10px 0;
 }
