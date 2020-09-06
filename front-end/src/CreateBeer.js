@@ -7,8 +7,9 @@ export default class CreateBeer extends React.Component{
     beer: {
       name: "",
       description: "",
-      image: "https://illustoon.com/photo/3821.png"
-    }
+      image: ""
+    },
+    previewImage: "https://illustoon.com/photo/3821.png"
   };
 
   constructor(props){
@@ -19,7 +20,13 @@ export default class CreateBeer extends React.Component{
 
   post(e){
     e.preventDefault();
-    APIController.addBeer(this.state.beer);
+
+    var formData = new FormData();
+    formData.append('name', this.state.beer.name);
+    formData.append('description', this.state.beer.description);
+    formData.append('image', this.state.beer.image, this.state.beer.image.name);
+
+    APIController.addBeer(formData);
     this.props.onAdd(this.state.beer);
     document.newBeerForm.reset();
   }
@@ -30,9 +37,10 @@ export default class CreateBeer extends React.Component{
 
   imagePreview(e){
     let beer = this.state.beer;
-    beer["image"] = URL.createObjectURL(e.target.files[0]);
+    beer.image = e.target.files[0];
     
     this.setState({
+      previewImage: URL.createObjectURL(e.target.files[0]),
       beer: beer
     });
   }
@@ -40,10 +48,10 @@ export default class CreateBeer extends React.Component{
   render() {
     return (
       <form id="beer" name="newBeerForm" onSubmit={(e) => this.post(e)}>
-        <div id="photo" style={{display:"flex", alignItems:"center", flexDirection:"column"}}>
-          <img src={this.state.beer["image"]} alt="Beer Img" width="300"></img>
+        <div id="photo">
+          <img src={this.state.previewImage} alt="Beer Img" width="300"></img>
           <label id="photo_button">
-            <input  type="file" accept="image/*" capture="environment" onChange={this.imagePreview}/>
+            <input  type="file" accept="image/*" capture="environment" required="required" onChange={this.imagePreview}/>
             Take a photo
           </label>
         </div>

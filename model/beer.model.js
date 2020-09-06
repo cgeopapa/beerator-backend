@@ -1,7 +1,8 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+const mongoURI = 'mongodb+srv://admin:admin@beerator-pfc6o.mongodb.net/beerator?retryWrites=true&w=majority';
 
-mongoose.connect('mongodb+srv://admin:admin@beerator-pfc6o.mongodb.net/beerator?retryWrites=true&w=majority', {
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -14,8 +15,12 @@ db.once('open', function(){
 const beerSchema = new Schema({
     name: String,
     description: String,
-
-    // image: Image
+    image: 
+    { 
+      data: Buffer, 
+      contentType: String 
+    }
 })
 
 module.exports = mongoose.model('Beers', beerSchema)
+module.exports.mongoURI = mongoURI;

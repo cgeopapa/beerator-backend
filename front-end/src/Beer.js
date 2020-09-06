@@ -38,10 +38,25 @@ class Beer extends React.Component {
     this.state.beer[event.target.name] = event.target.value;
   }
 
+  imagePreview(e){
+    let beer = this.state.beer;
+    beer.image = e.target.files[0];
+    
+    this.setState({
+      beer: beer 
+    });
+  }
+
   render() {
     return (
       <form id="beer" onSubmit={(e) => this.update(e)}>
-          <img src="https://illustoon.com/photo/3821.png" alt="Beer Img" width="300"></img>
+        <div id="photo">
+          <img src={`data:image/jpeg;base64,${this.state.beer.image}`} alt="Beer Img" width="300"></img>
+          <label id="photo_button">
+            <input id="image" type="file" accept="image/*" capture="environment" onChange={this.imagePreview}/>
+            Take a photo
+          </label>
+        </div>
           <div id="content">
             {this.state.isEditing
               ? <input type="text" id="name" name="name" placeholder="Beer Name" defaultValue={this.state.beer.name} onChange={this.changeHandler}></input>
