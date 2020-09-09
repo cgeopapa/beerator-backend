@@ -1,6 +1,5 @@
 const express = require('express'),
   beerController = require('./controllers/beer.controller'),
-  renderController = require('./controllers/render.controller');
 const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
@@ -17,7 +16,6 @@ app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, 'front-end/src')));
 app.use(cors());
 
-app.get('/', renderController.renderIndex);
 app.get('/beers', beerController.getBeers);
 app.post('/beer', upload.single('image'), beerController.addBeer);
 app.delete('/beer/:beerId', beerController.removeBeer)
