@@ -1,5 +1,5 @@
 const express = require('express'),
-  beerController = require('./controllers/beer.controller'),
+  beerController = require('./controllers/beer.controller');
 const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
