@@ -1,7 +1,10 @@
 const GridFsStream = require('gridfs-stream');
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
-const mongoURI = 'mongodb+srv://admin:admin@beerator-pfc6o.mongodb.net/beerator?retryWrites=true&w=majority';
+
+const dotenv = require('dotenv');
+dotenv.config();
+const mongoURI = process.env.mongo_uri;
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
@@ -19,11 +22,7 @@ db.once('open', function(){
 const beerSchema = new Schema({
     name: String,
     description: String,
-    image: 
-    { 
-      data: Buffer, 
-      contentType: String 
-    }
+    imageURL: String
 })
 
 module.exports = mongoose.model('Beers', beerSchema)
