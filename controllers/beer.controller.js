@@ -13,14 +13,6 @@ const cloudinary = require('cloudinary').v2
 exports.getBeers = function(req, res){
     Beer.find(function(err, beers){
         if(err) return console.error(err);
-        beers.forEach(beer => {
-            
-            if(beer.image && beer.image.contentType === "image/jpeg" || beer.image.contentType === "image/png")
-            {
-                console.log("ReadStream");
-                Beer.createReadStream(beer.image);
-            }
-        });
         res.json(beers);
     })
 }
@@ -43,7 +35,7 @@ exports.removeBeer = function(req, res){
     Beer.findByIdAndDelete(req.params["beerId"], function(err){
         if(err) return console.error(err);
         
-        const public_id = getIDfromURL(req.params["imageURL"])
+        const public_id = getIDfromURL(req.body.imageURL);
 
         cloudinary.uploader.destroy(public_id, function(err, result){
             if(err) return console.error(err);
