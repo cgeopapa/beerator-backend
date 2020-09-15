@@ -25,9 +25,9 @@ export default class CreateBeer extends React.Component{
     formData.append('name', this.state.beer.name);
     formData.append('description', this.state.beer.description);
     formData.append('image', this.state.beer.image, this.state.beer.image.name);
-
-    APIController.addBeer(formData);
-    this.props.onAdd(this.state.beer);
+    
+    APIController.addBeer(formData).then((response) => this.props.onAdd(response.data));
+    
     document.newBeerForm.reset();
   }
 

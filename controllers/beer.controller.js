@@ -20,12 +20,12 @@ exports.getBeers = function(req, res){
 exports.addBeer = function(req, res){
     const beer = new Beer(req.body);
     const image = req.files.image;
-    let ret;
     cloudinary.uploader.upload(image.tempFilePath, function(err, result){
         if(err) return console.error(err);
         beer.imageURL = result.url;
         beer.save(function (err, beer){
             if(err) return console.error(err);
+            console.log(beer);
             res.json(beer);
         });  
     });
@@ -45,8 +45,12 @@ exports.removeBeer = function(req, res){
 }
 
 exports.updateBeer = function(req, res){
-    Beer.findByIdAndUpdate(req.params["beerId"], req.body, function(err){
+    Beer.findByIdAndUpdate(req.params["beerId"], req.body, function(err, beer){
         if(err) return console.error(err);
+        if(req.files)
+        {
+            cloudinary.uploader.explicit(beer.imageURL)
+        }
         return res.sendStatus(200);
     })
 }

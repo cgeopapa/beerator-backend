@@ -2,9 +2,10 @@ import React from 'react'
 import APIController from './APIController'
 import './Beer.css'
 
-class Beer extends React.Component {
+export default class Beer extends React.Component {
   state = {beer: null, isEditing: true}
   isEditing = true;
+  imageUpdate = false;
 
   constructor(props) {
     super(props);
@@ -24,14 +25,25 @@ class Beer extends React.Component {
 
   delete(e){
     e.preventDefault();
-    APIController.deleteBeer(this.state.beer);
+    APIController.deleteBeer(this.state.beer._id, this.state.beer);
     this.props.onDelete(this.state.beer._id);
   }
 
   update(e){
     e.preventDefault();
-    APIController.updateBeer(this.state.beer._id, this.state.beer);
+    console.log("test");
+
+    var formData = new FormData();
+    formData.append('name', this.state.beer.name);
+    formData.append('description', this.state.beer.description);
+    if(this.imageUpdate)
+    {
+      formData.append('image', this.state.beer.image, this.state.beer.image.name);
+    }
+
+    APIController.updateBeer(this.state.beer._id, formData);
     this.edit(e);
+    this.imageUpdate = false;
   }
 
   changeHandler = (event) =>{
@@ -39,6 +51,7 @@ class Beer extends React.Component {
   }
 
   imagePreview(e){
+    this.imageUpdate = true;
     let beer = this.state.beer;
     beer.image = e.target.files[0];
     
@@ -51,11 +64,14 @@ class Beer extends React.Component {
     return (
       <form id="beer" onSubmit={(e) => this.update(e)}>
         <div id="photo">
-          <img src={this.state.beer.imageURL} alt="Beer Img" width="300"></img>
-          <label id="photo_button">
-            <input id="image" type="file" accept="image/*" capture="environment" onChange={this.imagePreview}/>
-            Take a photo
-          </label>
+          <img src={this.state.beer.imageURL? this.state.beer.imageURL : this.state.imagePreview} alt="Beer Img" width="300"></img>
+          {this.state.isEditing
+            ? <label id="photo_button">
+                <input id="image" type="file" accept="image/*" capture="environment" onChange={this.imagePreview}/>
+                Take a photo
+              </label>
+            : <span></span>
+          }
         </div>
           <div id="content">
             {this.state.isEditing
@@ -78,5 +94,3 @@ class Beer extends React.Component {
     );
   }
 }
-
-export default Beer
