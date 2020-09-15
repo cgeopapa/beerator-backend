@@ -9,7 +9,8 @@ export default class CreateBeer extends React.Component{
       description: "",
       image: ""
     },
-    previewImage: "https://illustoon.com/photo/3821.png"
+    previewImage: "https://illustoon.com/photo/3821.png",
+    defaultImage: "https://illustoon.com/photo/3821.png"
   };
 
   constructor(props){
@@ -28,6 +29,7 @@ export default class CreateBeer extends React.Component{
     
     APIController.addBeer(formData).then((response) => this.props.onAdd(response.data));
     
+    this.setState({previewImage: this.state.defaultImage});
     document.newBeerForm.reset();
   }
 
