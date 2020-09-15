@@ -13,7 +13,7 @@ export default class APIController {
       method: 'delete',
       url: '/beer/'+id,
       data: beer,
-      headers: {'Content-Type': 'multipart/form-data', 'accept': 'application/json' }
+      headers: {'accept': 'application/json' }
     })
     .then(function (response) {
       console.log(response);
@@ -40,19 +40,14 @@ export default class APIController {
   }
 
   static addBeer(beer){
-    return new Promise((resolve, reject) => {
-      axios({
-        method: 'post',
-        url: '/beer',
-        data: beer,
-        headers: {'Content-Type': 'multipart/form-data', 'accept': 'application/json' }
-      })
-      .then(function (response) {
-        resolve(response);
-      })
-      .catch(function (response) {
-          reject(response);
-      });
+    return axios({
+      method: 'post',
+      url: '/beer',
+      data: beer,
+      headers: {'Content-Type': 'multipart/form-data', 'accept': 'application/json' }
     })
+    .catch(function (response) {
+        console.error(response);
+    });
   }
 }
