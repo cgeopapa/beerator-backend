@@ -47,11 +47,16 @@ exports.removeBeer = function(req, res){
 exports.updateBeer = function(req, res){
     Beer.findByIdAndUpdate(req.params["beerId"], req.body, function(err, beer){
         if(err) return console.error(err);
+
         if(req.files)
         {
-            cloudinary.uploader.explicit(beer.imageURL)
+            cloudinary.uploader.destroy(getIDfromURL(req.body.imageURL));
+            cloudinary.uploader.upload(req.files.image.tempFilePath, function(err, result){
+                if(err) return console.error(err);
+                beer.imageURL = result.url;
+            });
         }
-        return res.sendStatus(200);
+        return res.json(beer);
     })
 }
 

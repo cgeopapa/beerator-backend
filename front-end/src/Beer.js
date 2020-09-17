@@ -31,11 +31,12 @@ export default class Beer extends React.Component {
 
   update(e){
     e.preventDefault();
-    console.log("test");
+    console.log(e);
 
     var formData = new FormData();
     formData.append('name', this.state.beer.name);
     formData.append('description', this.state.beer.description);
+    formData.append('imageURL', this.state.beer.imageURL);
     if(this.imageUpdate)
     {
       formData.append('image', this.state.beer.image, this.state.beer.image.name);
@@ -53,6 +54,7 @@ export default class Beer extends React.Component {
   imagePreview(e){
     this.imageUpdate = true;
     let beer = this.state.beer;
+    beer.imageURL = URL.createObjectURL(e.target.files[0]);
     beer.image = e.target.files[0];
     
     this.setState({
@@ -67,7 +69,7 @@ export default class Beer extends React.Component {
           <img src={this.state.beer.imageURL? this.state.beer.imageURL : this.state.imagePreview} alt="Beer Img" width="300"></img>
           {this.state.isEditing
             ? <label id="photo_button">
-                <input id="image" type="file" accept="image/*" capture="environment" onChange={this.imagePreview}/>
+                <input id="image" type="file" accept="image/*" capture="environment" onChange={this.imagePreview.bind(this)}/>
                 Take a photo
               </label>
             : <span></span>
