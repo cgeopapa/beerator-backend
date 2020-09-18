@@ -3,13 +3,14 @@ import APIController from './APIController'
 import './Beer.css'
 
 export default class Beer extends React.Component {
-  state = {beer: null, isEditing: true}
+  state = {beer: null, isEditing: true, imageURL: "https://illustoon.com/photo/3821.png" }
   isEditing = true;
   imageUpdate = false;
 
   constructor(props) {
     super(props);
     this.state.beer = props.beer;
+    this.state.imageURL = this.state.beer.imageURL;
     if(props.isEditing !== null || props.isEditing !== undefined){
       this.state.isEditing = props.isEditing;
     }
@@ -54,11 +55,11 @@ export default class Beer extends React.Component {
   imagePreview(e){
     this.imageUpdate = true;
     let beer = this.state.beer;
-    beer.imageURL = URL.createObjectURL(e.target.files[0]);
     beer.image = e.target.files[0];
     
     this.setState({
-      beer: beer 
+      beer: beer,
+      imageURL: URL.createObjectURL(e.target.files[0])
     });
   }
 
@@ -66,7 +67,7 @@ export default class Beer extends React.Component {
     return (
       <form id="beer" onSubmit={(e) => this.update(e)}>
         <div id="photo">
-          <img src={this.state.beer.imageURL? this.state.beer.imageURL : this.state.imagePreview} alt="Beer Img" width="300"></img>
+          <img src={this.state.imageURL} alt="Beer Img" width="300"></img>
           {this.state.isEditing
             ? <label id="photo_button">
                 <input id="image" type="file" accept="image/*" capture="environment" onChange={this.imagePreview.bind(this)}/>

@@ -45,19 +45,26 @@ exports.removeBeer = function(req, res){
 }
 
 exports.updateBeer = function(req, res){
-    Beer.findByIdAndUpdate(req.params["beerId"], req.body, function(err, beer){
-        if(err) return console.error(err);
-
-        if(req.files)
-        {
-            cloudinary.uploader.destroy(getIDfromURL(req.body.imageURL));
-            cloudinary.uploader.upload(req.files.image.tempFilePath, function(err, result){
+    let beer = req.body;
+    if(req.files)
+    {
+        cloudinary.uploader.destroy(getIDfromURL(beer.imageURL));
+        cloudinary.uploader.upload(req.files.image.tempFilePath, function(err, result){
+            if(err) return console.error(err);
+            beer.imageURL = result.url;
+            Beer.findByIdAndUpdate(req.params["beerId"], beer, function(err, beerNew){
                 if(err) return console.error(err);
-                beer.imageURL = result.url;
-            });
-        }
-        return res.json(beer);
-    })
+                return res.json(beerNew);
+            })  
+        });
+    }
+    else
+    {
+        Beer.findByIdAndUpdate(beer._id, beer, function(err, beerNew){
+            if(err) return console.error(err);
+            return res.json(beerNew);
+        })
+    }
 }
 
 function getIDfromURL(url){
