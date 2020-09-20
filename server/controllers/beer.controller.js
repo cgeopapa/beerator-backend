@@ -45,6 +45,7 @@ exports.removeBeer = function(req, res){
 }
 
 exports.updateBeer = function(req, res){
+    console.log("test");
     let beer = req.body;
     if(req.files)
     {
@@ -60,7 +61,7 @@ exports.updateBeer = function(req, res){
     }
     else
     {
-        Beer.findByIdAndUpdate(beer._id, beer, function(err, beerNew){
+        Beer.findByIdAndUpdate(req.params["beerId"], beer, function(err, beerNew){
             if(err) return console.error(err);
             return res.json(beerNew);
         })
